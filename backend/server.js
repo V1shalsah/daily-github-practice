@@ -1,12 +1,17 @@
 const express = require("express");
-
 const app = express();
-const PORT = 5000;
+
+const userRoutes = require("./routes/userRoutes");
+
+app.use(express.json());
+
+// Use route
+app.use("/api", userRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Backend server running successfully");
+  res.send("Backend server running");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
 });
