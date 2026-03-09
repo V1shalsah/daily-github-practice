@@ -1,11 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-// GET API
+let users = [];
+
+// GET users
 router.get("/users", (req, res) => {
-  res.json({
-    message: "User API working",
-    users: ["Vishal", "Rahul", "Aman"]
+  res.json(users);
+});
+
+// POST user
+router.post("/users", (req, res) => {
+  const user = req.body;
+
+  users.push(user);
+
+  res.status(201).json({
+    message: "User added successfully",
+    user: user
   });
 });
 

@@ -5,13 +5,12 @@ const userRoutes = require("./routes/userRoutes");
 
 app.use(express.json());
 
-// Use route
 app.use("/api", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend server running");
 });
 
-app.listen(5000, () => {
+app.listen(3000, () => {
   console.log("Server running on port 5000");
 });
