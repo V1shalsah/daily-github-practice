@@ -64,4 +64,13 @@ router.delete("/users/:id", (req, res) => {
   });
 });
 
+
+
+
+const { getUsers, createUser } = require("../controllers/userController");
+
+router.get("/users", getUsers);
+router.post("/users", createUser);
+
+
 module.exports = router;
