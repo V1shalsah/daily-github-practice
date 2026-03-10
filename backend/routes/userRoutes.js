@@ -10,13 +10,19 @@ router.get("/users", (req, res) => {
 
 // POST user
 router.post("/users", (req, res) => {
-  const user = req.body;
+  const { name, age } = req.body;
 
-  users.push(user);
+  const newUser = {
+    id: users.length + 1,
+    name: name,
+    age: age
+  };
+
+  users.push(newUser);
 
   res.status(201).json({
     message: "User added successfully",
-    user: user
+    user: newUser
   });
 });
 
