@@ -1,26 +1,28 @@
-let users = [];
+const User = require("../models/User");
 
 // GET users
-const getUsers = (req, res) => {
-  res.json(users);
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 // POST user
-const createUser = (req, res) => {
-  const { name, age } = req.body;
+const createUser = async (req, res) => {
+  try {
+    const { name, age } = req.body;
 
-  const newUser = {
-    id: users.length + 1,
-    name,
-    age
-  };
+    const user = new User({ name, age });
 
-  users.push(newUser);
+    const savedUser = await user.save();
 
-  res.status(201).json({
-    message: "User added successfully",
-    user: newUser
-  });
+    res.status(201).json(savedUser);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 module.exports = {
