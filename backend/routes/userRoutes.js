@@ -66,6 +66,13 @@ router.delete("/users/:id", (req, res) => {
 
 
 
+const { getUsers, createUser } = require("../controllers/userController");
+const validateUser = require("../middleware/validateUser");
+
+router.get("/users", getUsers);
+
+// validation middleware added
+router.post("/users", validateUser, createUser);
 
 const { getUsers, createUser } = require("../controllers/userController");
 
